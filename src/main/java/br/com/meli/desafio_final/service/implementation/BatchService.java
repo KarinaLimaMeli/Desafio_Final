@@ -213,7 +213,11 @@ public class BatchService implements IBatchService {
         return CalculatorDiscont(batches);
     };
 
-    // segundo metodo que aplica o desconto
+    /** Esse segundo metodo que aplica o desconto e retorna produto com preço antes e após o desconto
+     *
+     * @param products
+     * @return
+     */
 
     private List<Discount> CalculatorDiscont(List<Discount> products){
 

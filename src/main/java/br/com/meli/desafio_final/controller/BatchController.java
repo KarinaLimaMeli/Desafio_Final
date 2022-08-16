@@ -3,7 +3,7 @@ package br.com.meli.desafio_final.controller;
 import br.com.meli.desafio_final.dto.AdsensByDueDateAndCategoryDto;
 import br.com.meli.desafio_final.dto.AdsenseBySectionAndDueDateDto;
 import br.com.meli.desafio_final.dto.BatchDto;
-import br.com.meli.desafio_final.repository.BatchRepository;
+import br.com.meli.desafio_final.model.entity.Discount;
 import br.com.meli.desafio_final.service.implementation.BatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -53,4 +53,13 @@ public class BatchController {
         return ResponseEntity.status(HttpStatus.OK).body(service.findAdsenseByDueDateAndCategory(numberOfDays, category, order));
     }
 
+    /**
+     *  Nesse método estou retornando uma lista de batch (lote)
+     * @param numberOfDays
+     * @return
+     */
+    @GetMapping("/due-data/discount")
+    public ResponseEntity<List<Discount>> findBatchDto(@RequestParam int numberOfDays){
+        return ResponseEntity.ok(service.findByBatchOfWinning(numberOfDays));
+    }
 }

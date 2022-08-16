@@ -112,4 +112,18 @@ public interface BatchRepository extends JpaRepository<Batch, Long> {
             " AND product.category = ?3\n" +
             " ORDER BY current_quantity DESC", nativeQuery = true)
     List<Object[]> getAdsenseByDueDateAndCategoryDesc(LocalDate initialDate, LocalDate finalDate, String category);
+
+    /**
+     * Essa query retorna uma lista filtra por batch, data de vencimento e  preço afim de criar uma parametro para aplicar metodo desconto
+     * @param numberOfDays
+     * @return
+     */
+    @Query(value = "SELECT\n" +
+                " due_date, \n" +
+                " batch_number,\n" +
+                " price \n" +
+                " FROM batch as bat\n" +
+                " INNER JOIN adsense as ad on ad.id = bat.adsense_id \n" +
+                " where bat.due_date between current_date and DATE_ADD(NOW(), INTERVAL ?1 DAY)", nativeQuery = true)
+    List<Object[]> findByBatchOfWinning(int numberOfDays);
 }

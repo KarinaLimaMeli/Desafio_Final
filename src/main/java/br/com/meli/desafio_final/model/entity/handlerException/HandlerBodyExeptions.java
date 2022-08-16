@@ -1,4 +1,4 @@
-package br.com.meli.desafio_final.handlerException;
+package br.com.meli.desafio_final.model.entity.handlerException;
 
 import br.com.meli.desafio_final.exception.ErrorBodyValidationsResponse;
 import org.springframework.http.HttpHeaders;
